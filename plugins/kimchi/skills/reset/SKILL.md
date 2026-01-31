@@ -20,7 +20,9 @@ Clear the planning pipeline working directory.
    - .kimchi/RESEARCH.md
    - .kimchi/PLAN.md
    - .kimchi/PLAN-REVIEWED.md
-   - .kimchi/PLAN-FINAL.md
+   - .kimchi/PLAN-DRAFT.md
+   - .kimchi/PLAN-REVISED-*.md
+   - .kimchi/PLAN-SYNTHESIZED.md
    - .kimchi/VALIDATION-REPORT.md
    ```
 

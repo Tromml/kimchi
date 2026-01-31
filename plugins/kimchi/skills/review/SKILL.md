@@ -122,4 +122,4 @@ Write `.kimchi/PLAN-REVIEWED.md`:
 ```
 
 Report: "Review complete. Saved to .kimchi/PLAN-REVIEWED.md"
-Suggest: "Run `/kimchi:refine` for adaptive refinement, or `/kimchi:beads` to convert directly."
+Suggest: "Run `/kimchi:refine` to proceed to adaptive refinement."

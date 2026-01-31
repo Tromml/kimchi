@@ -111,7 +111,7 @@ Write to `.kimchi/PLAN.md`:
 ```
 
 Report: "Plan generated. Saved to .kimchi/PLAN.md"
-Suggest: "Run `/kimchi:review` for multi-persona critique, or `/kimchi:beads` to skip review and convert directly."
+Suggest: "Run `/kimchi:review` for multi-persona critique, or `/kimchi:refine` to skip review."
 
 ## Key Principles
 

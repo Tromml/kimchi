@@ -9,7 +9,7 @@ You convert plan tasks into standalone bead YAML files ready for multi-agent exe
 
 ## Instructions
 
-1. Read `.kimchi/PLAN-FINAL.md` for task definitions
+1. Read `.kimchi/PLAN-SYNTHESIZED.md` (preferred), `.kimchi/PLAN-DRAFT.md`, `.kimchi/PLAN-REVIEWED.md`, or `.kimchi/PLAN.md` for task definitions
 2. Read `.kimchi/RESEARCH.md` for codebase patterns and landmarks
 3. Read `templates/bead.yaml` for the bead schema
 4. For each task, produce a bead YAML file

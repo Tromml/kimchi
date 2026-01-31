@@ -1,6 +1,6 @@
 ---
 name: kimchi:beads
-description: This command should be used to convert the final plan into standalone bead YAML task specifications for multi-agent execution. Seventh stage of the Kimchi planning pipeline. Produces .beads/ directory.
+description: This command should be used to convert the final plan into standalone bead YAML task specifications for multi-agent execution. Ninth stage of the Kimchi planning pipeline. Produces .beads/ directory.
 ---
 
 # Kimchi Beads
@@ -11,7 +11,7 @@ Convert plan tasks into self-contained bead YAML files with full context (using 
 
 ## Input
 
-Read `.kimchi/PLAN-FINAL.md` (preferred), `.kimchi/PLAN-REVIEWED.md`, or `.kimchi/PLAN.md` (in order of preference).
+Read in order of preference: `.kimchi/PLAN-SYNTHESIZED.md`, `.kimchi/PLAN-DRAFT.md`, `.kimchi/PLAN-REVIEWED.md`, or `.kimchi/PLAN.md`.
 Also read `.kimchi/RESEARCH.md` for context references with landmarks.
 
 ## Process
@@ -108,7 +108,7 @@ created_by: "kimchi:beads"
 source:
   context: ".kimchi/CONTEXT.md"
   requirements: ".kimchi/REQUIREMENTS.md"
-  plan: ".kimchi/PLAN-FINAL.md"
+  plan: ".kimchi/PLAN-SYNTHESIZED.md"  # or whichever plan file was used
 
 beads:
   - id: "[ID]"

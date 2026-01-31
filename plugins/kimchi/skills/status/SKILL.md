@@ -18,13 +18,16 @@ Check the current state of the planning pipeline.
 
 ```
 Check for each file:
-- .kimchi/CONTEXT.md      → Stage 1: Clarification
-- .kimchi/REQUIREMENTS.md → Stage 2: Requirements
-- .kimchi/RESEARCH.md     → Stage 3: Research
-- .kimchi/PLAN.md         → Stage 4: Generation
-- .kimchi/PLAN-REVIEWED.md → Stage 5: Review
-- .kimchi/PLAN-FINAL.md   → Stage 6: Refinement
-- .kimchi/VALIDATION-REPORT.md → Stage 8: Validation
+- .kimchi/CONTEXT.md          → Stage 1: Clarification
+- .kimchi/REQUIREMENTS.md     → Stage 2: Requirements
+- .kimchi/RESEARCH.md         → Stage 3: Research
+- .kimchi/PLAN.md             → Stage 4: Generation
+- .kimchi/PLAN-REVIEWED.md    → Stage 5: Review
+- .kimchi/PLAN-DRAFT.md       → Stage 6: Refinement
+- .kimchi/PLAN-REVISED-*.md   → Stage 7: Cross-Model Review (list which models)
+- .kimchi/PLAN-SYNTHESIZED.md → Stage 8: Synthesis
+- .beads/manifest.yaml        → Stage 9: Bead Conversion
+- .kimchi/VALIDATION-REPORT.md → Stage 10: Validation
 ```
 
 4. Check `.beads/` directory:
@@ -38,14 +41,16 @@ Check for each file:
 Kimchi Pipeline Status
 ═══════════════════════
 
-Stage 1: Clarification     ✓ CONTEXT.md (modified: [date])
-Stage 2: Requirements       ✓ REQUIREMENTS.md (modified: [date])
-Stage 3: Research           ✗ Not started
-Stage 4: Generation         ✗ Not started
-Stage 5: Review             ✗ Not started
-Stage 6: Refinement         ✗ Not started
-Stage 7: Bead Conversion    ✗ Not started
-Stage 8: Validation         ✗ Not started
+Stage 1:  Clarification      ✓ CONTEXT.md (modified: [date])
+Stage 2:  Requirements       ✓ REQUIREMENTS.md (modified: [date])
+Stage 3:  Research           ✗ Not started
+Stage 4:  Generation         ✗ Not started
+Stage 5:  Review             ✗ Not started
+Stage 6:  Refinement         ✗ Not started
+Stage 7:  Cross-Model Review ✗ Not started (models: none)
+Stage 8:  Synthesis          ✗ Not started
+Stage 9:  Bead Conversion    ✗ Not started
+Stage 10: Validation         ✗ Not started
 
 Beads: [N] files in .beads/
 Next step: Run /kimchi:research to continue pipeline

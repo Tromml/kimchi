@@ -1,13 +1,13 @@
 ---
 name: kimchi:plan
-description: This command should be used to run the full Kimchi planning pipeline, transforming a vague idea into validated bead task specifications. Orchestrates all 8 stages: clarify, requirements, research, generate, review, refine, beads, validate.
-argument-hint: "[feature idea] [--depth minimal|standard|comprehensive] [--skip-research] [--skip-review] [--no-push]"
+description: This command should be used to run the Kimchi planning pipeline through refinement, transforming a vague idea into a draft plan ready for cross-model analysis. Orchestrates 6 stages: clarify, requirements, research, generate, review, refine. Use --full-auto to also run beads + validate after manual revise/synthesize.
+argument-hint: "[feature idea] [--depth minimal|standard|comprehensive] [--skip-research] [--skip-review] [--no-push] [--full-auto]"
 ---
 
 # Kimchi Plan
 
 <command_purpose>
-Full planning pipeline orchestrator. Takes a vague idea and produces validated .beads/ ready for multi-agent execution.
+Planning pipeline orchestrator. Takes a vague idea and produces a draft plan ready for cross-model analysis. With --full-auto, also runs beads + validate.
 </command_purpose>
 
 ## Input
@@ -21,6 +21,7 @@ Parse options:
 - `--no-push`: Don't offer to push to beads-sync
 - `--max-refine-loops N`: Max refinement iterations (default: 3)
 - `--max-bead-validation-loops N`: Max bead enrichment iterations (default: 3)
+- `--full-auto`: After refine, also run beads + validate (for when user has already done revise/synthesize)
 
 If no idea provided, ask: "What feature or change would you like to plan?"
 
@@ -30,18 +31,26 @@ If no idea provided, ask: "What feature or change would you like to plan?"
 
 **minimal:** Quick planning for small, clear features
 ```
-clarify → requirements → generate → beads
+clarify → requirements → generate → refine
 ```
 
 **standard:** Full pipeline (default)
 ```
-clarify → requirements → research → generate → review → refine → beads → validate
+clarify → requirements → research → generate → review → refine
 ```
 
 **comprehensive:** Deep planning for complex features
 ```
-clarify (extra questions) → requirements → research (deep) → generate → review → refine (5 loops) → beads → validate (5 loops)
+clarify (extra questions) → requirements → research (deep) → generate → review → refine (5 loops)
 ```
+
+After refine, the pipeline stops. The user should then:
+1. Run `/kimchi:plan-revise` in Claude, Codex, Gemini (or other models) for cross-model analysis
+2. Run `/kimchi:plan-synthesize` to blend all revisions
+3. Run `/kimchi:beads` to convert to bead specifications
+4. Run `/kimchi:validate` to verify beads
+
+With `--full-auto`, stages 9-10 (beads + validate) run automatically after refine.
 
 ### Execution
 
@@ -51,7 +60,7 @@ Run each stage as a slash command invocation. Between stages, show progress:
 Starting Kimchi planning pipeline...
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-STAGE 1/8: Clarification
+STAGE 1/6: Clarification
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 [Run /kimchi:clarify with the idea]
@@ -59,7 +68,7 @@ STAGE 1/8: Clarification
 ✓ Clarification complete → .kimchi/CONTEXT.md
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-STAGE 2/8: Requirements
+STAGE 2/6: Requirements
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 [Run /kimchi:requirements]
@@ -69,15 +78,16 @@ STAGE 2/8: Requirements
 [... continue through all stages ...]
 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-PLANNING COMPLETE
+DRAFT PLAN COMPLETE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-Created [N] validated beads:
-  001-[slug] (S)
-  002-[slug] (M)
-  003-[slug] (M)
+Draft plan ready at .kimchi/PLAN-DRAFT.md
 
-[Unless --no-push]: Push to beads-sync? [y/n]
+Next steps:
+  1. Run /kimchi:plan-revise in Claude, Codex, and Gemini for cross-model analysis
+  2. Run /kimchi:plan-synthesize to blend all revisions
+  3. Run /kimchi:beads to convert to bead specifications
+  4. Run /kimchi:validate to verify beads
 ```
 
 ### Stage Orchestration
@@ -90,6 +100,10 @@ For each stage, follow the instructions in the corresponding command file:
 4. **Generate** → Execute generate command logic
 5. **Review** → Execute review command logic (skip if --skip-review)
 6. **Refine** → Execute refine command logic (skip if --skip-review, uses --max-refine-loops)
+
+Pipeline stops here. User runs plan-revise and plan-synthesize manually across models.
+
+If `--full-auto` is set, also run:
 7. **Beads** → Execute beads command logic
 8. **Validate** → Execute validate command logic (uses --max-bead-validation-loops)
 

@@ -1,6 +1,6 @@
 ---
 name: kimchi:refine
-description: This command should be used to iteratively improve the plan until quality threshold is reached or diminishing returns detected. Sixth stage of the Kimchi planning pipeline. Produces .kimchi/PLAN-FINAL.md.
+description: This command should be used to iteratively improve the plan until quality threshold is reached or diminishing returns detected. Sixth stage of the Kimchi planning pipeline. Produces .kimchi/PLAN-DRAFT.md.
 argument-hint: "[--loops N]"
 ---
 
@@ -52,10 +52,10 @@ for each iteration (up to max_loops):
 
 ### 3. Write Output
 
-Write `.kimchi/PLAN-FINAL.md`:
+Write `.kimchi/PLAN-DRAFT.md`:
 
 ```markdown
-# Final Plan: [Feature Name]
+# Draft Plan: [Feature Name]
 
 **Refined:** [today's date]
 **Source:** .kimchi/PLAN-REVIEWED.md
@@ -68,10 +68,10 @@ Write `.kimchi/PLAN-FINAL.md`:
 | 2 | [N]/100 | [criterion] | [what changed] | - |
 | 3 | [N]/100 | - | - | [exit reason] |
 
-## Final Plan
+## Draft Plan
 
 [Complete refined plan with all improvements applied]
 ```
 
-Report: "Refinement complete (exit: [reason], score: [N]/100). Saved to .kimchi/PLAN-FINAL.md"
-Suggest: "Run `/kimchi:beads` to convert plan to bead specifications."
+Report: "Refinement complete (exit: [reason], score: [N]/100). Saved to .kimchi/PLAN-DRAFT.md"
+Suggest: "Run `/kimchi:plan-revise` for cross-model analysis, or `/kimchi:beads` to convert directly."

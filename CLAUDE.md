@@ -8,7 +8,7 @@ Kimchi is a Claude Code plugin that transforms vague ideas into validated, stand
 
 - **Prompt-native:** All logic lives in markdown files. No TypeScript, no build step.
 - **Plugin structure:** `.claude-plugin/plugin.json` manifest, `commands/` for slash commands, `skills/` for execution discipline, `agents/` for subagents.
-- **8-stage pipeline:** clarify -> requirements -> research -> generate -> review -> refine -> beads -> validate
+- **10-stage pipeline:** clarify -> requirements -> research -> generate -> review -> refine -> plan-revise -> plan-synthesize -> beads -> validate
 
 ## Key conventions
 

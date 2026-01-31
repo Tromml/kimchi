@@ -1,5 +1,5 @@
 ---
-name: validate
+name: kimchi:validate
 description: This command should be used to validate bead YAML files for standalone executability. Runs 4 validators (context completeness, deliverables clarity, test specification, isolation) and enriches failing beads. Eighth stage of the Kimchi planning pipeline.
 argument-hint: "[--loops N] [--bead ID]"
 ---

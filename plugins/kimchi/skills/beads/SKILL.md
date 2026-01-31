@@ -1,5 +1,5 @@
 ---
-name: beads
+name: kimchi:beads
 description: This command should be used to convert the final plan into standalone bead YAML task specifications for multi-agent execution. Seventh stage of the Kimchi planning pipeline. Produces .beads/ directory.
 ---
 

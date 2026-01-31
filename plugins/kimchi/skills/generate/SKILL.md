@@ -1,5 +1,5 @@
 ---
-name: generate
+name: kimchi:generate
 description: This command should be used to generate an implementation plan with task breakdown, dependencies, and complexity estimates. Fourth stage of the Kimchi planning pipeline. Produces .kimchi/PLAN.md.
 ---
 

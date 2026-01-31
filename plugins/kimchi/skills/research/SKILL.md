@@ -1,5 +1,5 @@
 ---
-name: research
+name: kimchi:research
 description: This command should be used to investigate codebase patterns, frameworks, and existing implementations before planning. Third stage of the Kimchi planning pipeline. Produces .kimchi/RESEARCH.md.
 ---
 

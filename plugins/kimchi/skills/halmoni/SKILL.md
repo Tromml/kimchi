@@ -1,5 +1,5 @@
 ---
-name: halmoni
+name: kimchi:halmoni
 description: This command should be used to run the Kimchi self-improvement system. Observes execution outcomes, proposes incremental improvements to skills/validators/personas, validates against history, and applies with versioning.
 argument-hint: "[--from-bead ID] [--from-feedback \"text\"] [--taste-only] [--dry-run] [--history]"
 ---

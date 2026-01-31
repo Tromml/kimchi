@@ -1,5 +1,5 @@
 ---
-name: requirements
+name: kimchi:requirements
 description: This command should be used to extract and categorize requirements from CONTEXT.md into v1 (must have), v2 (next iteration), and out of scope. Second stage of the Kimchi planning pipeline. Produces .kimchi/REQUIREMENTS.md.
 ---
 

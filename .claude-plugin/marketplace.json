@@ -12,7 +12,7 @@
     {
       "name": "kimchi",
       "description": "Planning pipeline that transforms vague ideas into validated, standalone task specifications (beads) for multi-agent execution.",
-      "version": "0.1.2",
+      "version": "0.2.0",
       "author": {
         "name": "Harry Park",
         "email": "harry@tromml.com",

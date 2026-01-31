@@ -1,0 +1,32 @@
+# Bead Template
+# File: .beads/{bead_id}-{slug}.yaml
+
+bead_id: ""
+title: ""
+description: |
+  [Detailed description. Must be complete enough for standalone execution.]
+
+depends_on: []
+
+context:
+  - file: ""
+    find: ""
+    scope: ""
+    purpose: ""
+
+deliverables:
+  - type: "file_create"  # file_create | file_modify | file_delete
+    path: ""
+    description: ""
+
+tests:
+  file: ""
+  cases:
+    - ""
+  run_command: ""
+
+acceptance_criteria:
+  - ""
+
+estimated_complexity: "M"  # S | M | L
+requirements: []

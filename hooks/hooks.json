@@ -1,0 +1,21 @@
+{
+  "description": "Kimchi plugin hooks for ACFS integration events",
+  "hooks": [
+    {
+      "event": "bead_complete",
+      "description": "Trigger Halmoni taste cycle when a bead execution completes",
+      "action": "kimchi:halmoni --from-bead ${BEAD_ID} --taste-only"
+    },
+    {
+      "event": "bead_failed",
+      "description": "Trigger Halmoni analysis when a bead execution fails",
+      "action": "kimchi:halmoni --from-bead ${BEAD_ID}"
+    },
+    {
+      "event": "validation_pattern",
+      "description": "Trigger Halmoni when same validation issue occurs 3+ times",
+      "condition": "validation_failure_count >= 3",
+      "action": "kimchi:halmoni --from-feedback 'Recurring validation failure: ${VALIDATION_ISSUE}'"
+    }
+  ]
+}

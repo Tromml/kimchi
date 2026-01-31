@@ -1,0 +1,20 @@
+{
+  "name": "kimchi",
+  "version": "0.1.0",
+  "description": "Planning pipeline that transforms vague ideas into validated, standalone task specifications (beads) for multi-agent execution. 3 pipeline agents, 5 review agents, 5 execution skills, 14 commands.",
+  "author": {
+    "name": "HK Park",
+    "url": "https://github.com/Tromml"
+  },
+  "repository": "https://github.com/Tromml/kimchi",
+  "license": "MIT",
+  "keywords": [
+    "planning",
+    "multi-agent",
+    "task-specification",
+    "beads",
+    "tdd",
+    "code-quality",
+    "self-improvement"
+  ]
+}

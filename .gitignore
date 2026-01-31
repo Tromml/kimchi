@@ -1,0 +1,19 @@
+# Kimchi working directory (generated per-project)
+.kimchi/
+
+# Beads output directory (generated per-project)
+.beads/
+
+# Inspiration repos (reference material, not part of plugin)
+inspiration/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.idea/
+.vscode/

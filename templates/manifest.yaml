@@ -1,0 +1,21 @@
+# Beads Manifest Template
+# File: .beads/manifest.yaml
+
+version: "1.0"
+plan_id: ""
+created_at: ""
+created_by: "kimchi:beads"
+
+source:
+  context: ".kimchi/CONTEXT.md"
+  requirements: ".kimchi/REQUIREMENTS.md"
+  plan: ".kimchi/PLAN-FINAL.md"
+
+beads:
+  - id: ""
+    file: ""
+    status: "pending"
+    depends_on: []
+
+dependency_graph: |
+  [ASCII dependency graph]

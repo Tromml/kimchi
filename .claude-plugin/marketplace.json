@@ -1,15 +1,26 @@
 {
   "name": "kimchi-marketplace",
   "owner": {
-    "name": "HK Park",
-    "email": "hk@tromml.com"
+    "name": "Harry Park",
+    "url": "https://github.com/Tromml"
+  },
+  "metadata": {
+    "description": "Kimchi planning pipeline plugin for Claude Code",
+    "version": "1.0.0"
   },
   "plugins": [
     {
       "name": "kimchi",
-      "source": ".",
       "description": "Planning pipeline that transforms vague ideas into validated, standalone task specifications (beads) for multi-agent execution.",
-      "version": "0.1.0"
+      "version": "0.1.0",
+      "author": {
+        "name": "Harry Park",
+        "email": "harry@tromml.com",
+        "url": "https://github.com/Tromml"
+      },
+      "homepage": "https://github.com/Tromml/kimchi",
+      "tags": ["planning", "multi-agent", "task-specification", "beads", "tdd"],
+      "source": "./plugins/kimchi"
     }
   ]
 }

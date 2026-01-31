@@ -1,6 +1,6 @@
 ---
 name: reset
-description: "This command should be used to clear the Kimchi working directory (.kimchi/) and start fresh. Preserves .beads/ directory. Use when starting a new planning session or recovering from a bad state."
+description: This command should be used to clear the Kimchi working directory (.kimchi/) and start fresh. Preserves .beads/ directory. Use when starting a new planning session or recovering from a bad state.
 ---
 
 # Kimchi Reset

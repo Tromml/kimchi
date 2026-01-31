@@ -1,6 +1,6 @@
 ---
 name: refine
-description: "This command should be used to iteratively improve the plan until quality threshold is reached or diminishing returns detected. Sixth stage of the Kimchi planning pipeline. Produces .kimchi/PLAN-FINAL.md."
+description: This command should be used to iteratively improve the plan until quality threshold is reached or diminishing returns detected. Sixth stage of the Kimchi planning pipeline. Produces .kimchi/PLAN-FINAL.md.
 argument-hint: "[--loops N]"
 ---
 

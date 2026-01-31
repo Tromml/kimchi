@@ -1,6 +1,6 @@
 ---
 name: status
-description: "This command should be used to check the current state of the Kimchi planning pipeline, including which stages have completed, what artifacts exist, and bead validation status."
+description: This command should be used to check the current state of the Kimchi planning pipeline, including which stages have completed, what artifacts exist, and bead validation status.
 ---
 
 # Kimchi Status

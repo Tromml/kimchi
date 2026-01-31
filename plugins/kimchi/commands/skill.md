@@ -1,6 +1,6 @@
 ---
 name: skill
-description: "This command should be used to view the full content of a specific Kimchi execution skill."
+description: This command should be used to view the full content of a specific Kimchi execution skill.
 argument-hint: "[skill-name]"
 ---
 

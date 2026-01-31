@@ -1,6 +1,6 @@
 ---
 name: skills
-description: "This command should be used to list all available Kimchi execution skills with their names, versions, and descriptions."
+description: This command should be used to list all available Kimchi execution skills with their names, versions, and descriptions.
 ---
 
 # Kimchi Skills

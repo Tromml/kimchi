@@ -1,6 +1,6 @@
 ---
 name: plan
-description: "This command should be used to run the full Kimchi planning pipeline, transforming a vague idea into validated bead task specifications. Orchestrates all 8 stages: clarify, requirements, research, generate, review, refine, beads, validate."
+description: This command should be used to run the full Kimchi planning pipeline, transforming a vague idea into validated bead task specifications. Orchestrates all 8 stages: clarify, requirements, research, generate, review, refine, beads, validate.
 argument-hint: "[feature idea] [--depth minimal|standard|comprehensive] [--skip-research] [--skip-review] [--no-push]"
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: clarify
-description: "This command should be used to extract complete understanding of a feature idea through structured clarification questions. First stage of the Kimchi planning pipeline. Produces .kimchi/CONTEXT.md."
+description: This command should be used to extract complete understanding of a feature idea through structured clarification questions. First stage of the Kimchi planning pipeline. Produces .kimchi/CONTEXT.md.
 argument-hint: "[feature idea]"
 ---
 

@@ -1,6 +1,6 @@
 ---
 name: review
-description: "This command should be used to run multi-persona review of the implementation plan. Five specialized personas critique the plan for scope creep, complexity, premature optimization, and test coverage. Fifth stage of the Kimchi planning pipeline. Produces .kimchi/PLAN-REVIEWED.md."
+description: This command should be used to run multi-persona review of the implementation plan. Five specialized personas critique the plan for scope creep, complexity, premature optimization, and test coverage. Fifth stage of the Kimchi planning pipeline. Produces .kimchi/PLAN-REVIEWED.md.
 ---
 
 # Kimchi Review

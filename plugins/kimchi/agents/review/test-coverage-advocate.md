@@ -1,5 +1,5 @@
 ---
-name: test-coverage-advocate
+name: kimchi:review:test-coverage-advocate
 description: "Reviews plans to identify missing or insufficient test specifications, ensuring coverage matches task complexity"
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: complexity-detector
+name: kimchi:review:complexity-detector
 description: "Reviews plans to identify unnecessary complexity, over-engineering, and premature abstractions"
 ---
 

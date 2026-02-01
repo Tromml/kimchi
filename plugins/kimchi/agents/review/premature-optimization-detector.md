@@ -1,5 +1,5 @@
 ---
-name: premature-optimization-detector
+name: kimchi:review:premature-optimization-detector
 description: "Reviews plans to identify optimizations that aren't yet needed based on actual usage evidence"
 ---
 

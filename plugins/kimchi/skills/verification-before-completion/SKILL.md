@@ -1,5 +1,5 @@
 ---
-name: verification-before-completion
+name: kimchi:verification-before-completion
 description: Use when about to claim work is complete, fixed, or passing — before committing or creating PRs. Evidence before assertions, always.
 ---
 
@@ -67,6 +67,16 @@ Manual verification:
 □ Tested 6MB file → rejected with "File too large" error
 □ Tested valid upload → returns https://bucket.s3.../avatar.jpg
 ```
+
+### Cross-check: Tests vs. Acceptance Criteria
+
+Before marking a bead complete, verify that the bead's `tests.run_command`
+actually covers ALL acceptance criteria. If the test only checks a subset
+(e.g., frontmatter presence but not file moves), manually verify the
+remaining criteria.
+
+Common gap: A bead's description says "move files" but its test only checks
+"files have frontmatter." The test passes, but the bead isn't done.
 
 ### 3. Check for Regressions
 
@@ -151,7 +161,7 @@ Before marking complete, ALL must be true:
 
 ### FORBIDDEN: "Tests pass, ship it"
 
-Passing tests are necessary but not sufficient. Verify acceptance criteria manually.
+Passing tests are necessary but not sufficient. Verify acceptance criteria manually. A bead's `tests.run_command` may only check a subset of its acceptance criteria — cross-check every criterion against what the test actually validates.
 
 ### FORBIDDEN: Skipping manual verification
 

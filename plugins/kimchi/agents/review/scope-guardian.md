@@ -1,5 +1,5 @@
 ---
-name: scope-guardian
+name: kimchi:review:scope-guardian
 description: "Reviews plans to catch scope creep, tasks outside feature boundary, and vague acceptance criteria"
 ---
 

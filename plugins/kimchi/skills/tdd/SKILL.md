@@ -1,5 +1,5 @@
 ---
-name: tdd
+name: kimchi:tdd
 description: Use when implementing any feature, bugfix, or behavior change — before writing implementation code. Enforces RED-GREEN-REFACTOR cycle.
 ---
 

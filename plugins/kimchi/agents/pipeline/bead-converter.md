@@ -1,5 +1,5 @@
 ---
-name: bead-converter
+name: kimchi:pipeline:bead-converter
 description: "Converts plan tasks into standalone bead YAML files with full context, deliverables, and test specifications"
 ---
 

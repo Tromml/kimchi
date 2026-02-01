@@ -32,9 +32,14 @@ templates/                    # 6 output templates
 hooks/                        # ACFS integration hooks
 ```
 
+## Tools
+
+- **`/kimchi:convert`** — Converts the kimchi plugin into OpenCode and Codex compatible formats. Requires bun runtime. Source: `plugins/kimchi/skills/convert/`.
+
 ## Testing
 
 This is a prompt-native plugin — there's no code to unit test. Validation happens through:
 - Manual testing of each command
 - Bead validator checks
 - Review persona output quality
+- Converter CLI tests: `cd plugins/kimchi/skills/convert/cli && bun install && bun test`

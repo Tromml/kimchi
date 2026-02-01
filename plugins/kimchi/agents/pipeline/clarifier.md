@@ -1,5 +1,5 @@
 ---
-name: clarifier
+name: kimchi:pipeline:clarifier
 description: "Analyzes initial feature description and generates structured clarification questions across 5 categories"
 ---
 

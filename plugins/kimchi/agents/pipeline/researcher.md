@@ -1,5 +1,5 @@
 ---
-name: researcher
+name: kimchi:pipeline:researcher
 description: "Analyzes codebase to discover patterns, conventions, and reference implementations relevant to the planned feature"
 ---
 

@@ -1,5 +1,5 @@
 ---
-name: feature-trimmer
+name: kimchi:review:feature-trimmer
 description: "Reviews plans to identify non-essential features that should be cut or deferred to v2"
 ---
 

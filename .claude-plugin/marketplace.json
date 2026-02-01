@@ -11,8 +11,8 @@
   "plugins": [
     {
       "name": "kimchi",
-      "description": "Planning pipeline with cross-model analysis that transforms vague ideas into validated, standalone task specifications (beads) for multi-agent execution.",
-      "version": "0.3.0",
+      "description": "Planning pipeline with cross-model analysis that transforms vague ideas into validated, standalone task specifications (beads) for multi-agent execution. Includes format conversion to OpenCode and Codex.",
+      "version": "0.4.1",
       "author": {
         "name": "Harry Park",
         "email": "harry@tromml.com",

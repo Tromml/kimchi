@@ -1,5 +1,5 @@
 ---
-name: bead-protocol
+name: kimchi:bead-protocol
 description: Use when executing a bead within ACFS infrastructure — starting, working on, or completing a bead task. Enforces proper ACFS integration.
 ---
 
@@ -52,14 +52,28 @@ If reserved:
 - Send Agent Mail to reservation holder
 - Work on non-reserved files first
 
-### 3. Reserve Your Files
+### 3. Claim the Bead
+
+Before starting work, claim the bead in the manifest to prevent duplicate execution:
+
+```bash
+# Update manifest status from "pending" to "in_progress"
+# Include your agent name so others know who's working on it
+sed -i '/id: "{bead_id}"/,/status:/ s/status: "pending"/status: "in_progress: {agent_name}"/' .beads/manifest.yaml
+git add .beads/manifest.yaml && git commit -m "{bead_id}: claimed by {agent_name}"
+git push origin HEAD:beads-sync
+```
+
+If the manifest already shows `in_progress` for your bead, STOP — another agent has it.
+
+### 4. Reserve Your Files
 
 ```bash
 # Reserve files you'll be editing
 acfs reserve --add {file_path} --ttl 3600
 ```
 
-### 4. Load Context
+### 5. Load Context
 
 For each context reference in the bead:
 1. Open the file
@@ -69,7 +83,7 @@ For each context reference in the bead:
 
 **Do not skip any context entry.** Each one is there for a reason.
 
-### 5. Update Bead Status
+### 6. Update Bead Status
 
 ```bash
 acfs bead status {bead_id} --set in_progress

@@ -1,5 +1,5 @@
 ---
-name: simplicity-enforcement
+name: kimchi:simplicity-enforcement
 description: Use when designing solutions, implementing features, or considering abstractions. Enforces YAGNI, minimal code, and preferring duplication over wrong abstraction.
 ---
 

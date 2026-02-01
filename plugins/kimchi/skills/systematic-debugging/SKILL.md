@@ -1,5 +1,5 @@
 ---
-name: systematic-debugging
+name: kimchi:systematic-debugging
 description: Use when encountering any bug, test failure, or unexpected behavior — before proposing fixes. Enforces 4-phase root cause analysis.
 ---
 

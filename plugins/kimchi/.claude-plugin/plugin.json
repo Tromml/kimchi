@@ -1,6 +1,6 @@
 {
   "name": "kimchi",
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "Planning pipeline with cross-model analysis that transforms vague ideas into validated, standalone task specifications (beads) for multi-agent execution. Includes format conversion to OpenCode and Codex. 3 pipeline agents, 5 review agents, 8 execution skills, 16 commands.",
   "author": {
     "name": "Harry Park",

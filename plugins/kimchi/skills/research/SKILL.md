@@ -9,9 +9,42 @@ description: This command should be used to investigate codebase patterns, frame
 Investigate the codebase for existing patterns, similar features, framework conventions, and anti-patterns. All code references use `find:` landmarks (semantic identifiers), never line numbers.
 </command_purpose>
 
+## The Iron Law
+
+```
+RESEARCH REQUIRES REQUIREMENTS.MD FIRST
+```
+
+If REQUIREMENTS.md doesn't exist, stop and tell user to run `/kimchi:requirements` first.
+
+Research is NOT requirements extraction. Research investigates actual code.
+
+## Prerequisites Check (MANDATORY)
+
+Before starting research, verify prerequisites exist:
+
+```bash
+ls .kimchi/CONTEXT.md
+ls .kimchi/REQUIREMENTS.md
+```
+
+If either missing, output:
+
+```
+Missing prerequisites:
+- CONTEXT.md: [exists/missing]
+- REQUIREMENTS.md: [exists/missing]
+
+Run missing stages first:
+- Missing CONTEXT.md? Run /kimchi:clarify
+- Missing REQUIREMENTS.md? Run /kimchi:requirements
+```
+
+**STOP.** Do not proceed.
+
 ## Input
 
-Read `.kimchi/CONTEXT.md` and `.kimchi/REQUIREMENTS.md`. If either doesn't exist, tell the user which prerequisite to run first.
+Read `.kimchi/CONTEXT.md` and `.kimchi/REQUIREMENTS.md`.
 
 ## Process
 
@@ -131,6 +164,27 @@ Write to `.kimchi/RESEARCH.md`:
 
 Report: "Research complete. Saved to .kimchi/RESEARCH.md"
 Suggest: "Run `/kimchi:generate` to create the implementation plan."
+
+## Red Flags — STOP and Check Prerequisites
+
+- REQUIREMENTS.md doesn't exist (skipped requirements stage)
+- You're extracting requirements (that's previous stage)
+- You're writing acceptance criteria (that's requirements)
+- You're categorizing into v1/v2 (that's requirements)
+
+**Action if detected:** Stop. Tell user to run missing prerequisite stage first.
+
+## Verification Checklist
+
+Before completing research stage:
+
+- [ ] CONTEXT.md exists (read it)
+- [ ] REQUIREMENTS.md exists (read it)
+- [ ] Searched codebase with Glob/Grep
+- [ ] Documented patterns with find: landmarks
+- [ ] Created RESEARCH.md
+- [ ] Did NOT modify REQUIREMENTS.md
+- [ ] Did NOT extract new requirements
 
 ## Key Principles
 

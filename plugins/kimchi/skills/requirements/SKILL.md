@@ -9,6 +9,21 @@ description: This command should be used to extract and categorize requirements 
 Parse .kimchi/CONTEXT.md and extract all requirements into a structured, prioritized document with acceptance criteria and traceability.
 </command_purpose>
 
+## The Iron Law
+
+```
+NO CODEBASE INVESTIGATION DURING REQUIREMENTS EXTRACTION
+```
+
+Requirements extraction ONLY reads CONTEXT.md. No codebase investigation:
+- No Glob to search for files
+- No Grep to search code
+- No reading implementation files
+- No "checking if exists"
+- No "understanding current patterns"
+
+**That's research.** Research is the next stage.
+
 ## Input
 
 Read `.kimchi/CONTEXT.md`. If it doesn't exist, tell the user: "No CONTEXT.md found. Run `/kimchi:clarify [idea]` first."
@@ -97,7 +112,48 @@ Show the user a summary:
 - Ask: "Does this categorization look right? Anything that should move between v1/v2/out-of-scope?"
 
 Report: "Requirements extracted. Saved to .kimchi/REQUIREMENTS.md"
-Suggest: "Run `/kimchi:research` to investigate codebase patterns."
+
+**Next:** Run `/kimchi:research` to investigate codebase patterns.
+
+**STOP.** Do not continue to research.
+
+## Common Rationalizations
+
+| Excuse | Reality |
+|--------|---------|
+| "Just a quick check if this exists" | That's research. Stop. |
+| "This would inform better requirements" | Research informs planning, not requirements |
+| "I'll look at one file to understand" | One file = codebase investigation = research stage |
+| "User would benefit from knowing if..." | User runs research next. They'll find out then |
+| "I can do both stages efficiently" | Stages are separate for reason. Trust the pipeline |
+| "Need to see patterns to write criteria" | Acceptance criteria come from requirements, not implementation |
+| "I'll just Glob to check structure" | Any Glob/Grep = research. Not requirements. |
+
+## Red Flags — STOP and Delete RESEARCH.md
+
+Detecting any of these = boundary violation:
+
+- Used Glob to search for files
+- Used Grep to search code
+- Read any file outside `.kimchi/` directory
+- Mentioned "existing implementation"
+- Mentioned "current patterns"
+- RESEARCH.md exists when you're done
+- Investigated "how it's currently done"
+
+**Action if detected:** Delete RESEARCH.md. Requirements ONLY creates REQUIREMENTS.md.
+
+## Verification Checklist
+
+Before completing requirements stage:
+
+- [ ] Read only CONTEXT.md (no other files)
+- [ ] Created REQUIREMENTS.md with v1/v2/out-of-scope
+- [ ] All requirements trace to CONTEXT.md decisions
+- [ ] Used NO Glob/Grep searches
+- [ ] Read NO implementation files
+- [ ] Did NOT create RESEARCH.md
+- [ ] Output ends with hard STOP message
 
 ## Key Principles
 

@@ -9,10 +9,50 @@ You analyze the existing codebase to discover patterns the implementation should
 
 ## Instructions
 
-1. Read `.kimchi/CONTEXT.md` and `.kimchi/REQUIREMENTS.md`
+### Step 0: Validate Prerequisites (MANDATORY FIRST STEP)
+
+Check that prior stages completed:
+
+```bash
+ls .kimchi/CONTEXT.md
+ls .kimchi/REQUIREMENTS.md
+```
+
+If either missing, output clear error:
+
+```
+Missing prerequisites for research stage:
+- CONTEXT.md: [exists/missing]
+- REQUIREMENTS.md: [exists/missing]
+
+Run missing stages first:
+- Missing CONTEXT.md? Run /kimchi:clarify
+- Missing REQUIREMENTS.md? Run /kimchi:requirements
+
+CANNOT proceed with research until prerequisites exist.
+```
+
+**STOP.** Do not continue.
+
+### Step 1: Read Prerequisites
+
+1. Read `.kimchi/CONTEXT.md`
+2. Read `.kimchi/REQUIREMENTS.md`
+
+### Step 2: Detect Stack
+
 2. Detect the project stack from package manager files
+
+### Step 3: Search Patterns
+
 3. Search codebase for relevant patterns
+
+### Step 4: Document
+
 4. Document findings with `find:` landmarks (never line numbers)
+
+### Step 5: Output
+
 5. Output as `.kimchi/RESEARCH.md`
 
 ## Stack Detection

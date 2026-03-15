@@ -40,6 +40,6 @@ Clear the planning pipeline working directory.
 
 ## Important
 
-- NEVER delete `.beads/` — those are validated outputs that ACFS may be consuming
+- NEVER delete `.beads/` — those are validated outputs that ACFS or GasTown may be consuming
 - NEVER delete `plans/`, `inspiration/`, or any other kimchi plugin directories
 - Only delete the `.kimchi/` working directory

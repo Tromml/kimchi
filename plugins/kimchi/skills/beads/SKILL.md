@@ -1,6 +1,7 @@
 ---
 name: kimchi:beads
-description: This command should be used to convert the final plan into standalone bead YAML task specifications for multi-agent execution. Ninth stage of the Kimchi planning pipeline. Produces .beads/ directory.
+description: This command should be used to convert the final plan into standalone bead YAML task specifications for multi-agent execution. Ninth stage of the Kimchi planning pipeline. Produces .beads/ directory. Supports both ACFS and GasTown orchestration modes.
+argument-hint: "[--orchestration acfs|gastown]"
 ---
 
 # Kimchi Beads
@@ -13,6 +14,9 @@ Convert plan tasks into self-contained bead YAML files with full context (using 
 
 Read in order of preference: `.kimchi/PLAN-SYNTHESIZED.md`, `.kimchi/PLAN-DRAFT.md`, `.kimchi/PLAN-REVIEWED.md`, or `.kimchi/PLAN.md`.
 Also read `.kimchi/RESEARCH.md` for context references with landmarks.
+
+Parse options:
+- `--orchestration acfs|gastown` (default: acfs) — Determines the orchestration system that will consume and execute the beads. This affects manifest metadata and post-generation guidance.
 
 ## Process
 
@@ -104,6 +108,7 @@ version: "1.0"
 plan_id: "[feature-slug]-[date]"
 created_at: "[ISO 8601 timestamp]"
 created_by: "kimchi:beads"
+orchestration: "[acfs|gastown]"  # Which system will execute these beads
 
 source:
   context: ".kimchi/CONTEXT.md"
@@ -131,6 +136,31 @@ Check that the dependency graph has no circular dependencies. If cycles found, r
 
 Report: "Beads created. [N] bead files in .beads/"
 Suggest: "Run `/kimchi:validate` to verify beads are standalone-executable."
+
+### 7. Orchestration-Specific Guidance
+
+After bead generation, provide guidance based on the `--orchestration` flag:
+
+**If `acfs` (default):**
+```
+Beads are configured for ACFS orchestration.
+Next: Run /kimchi:validate, then use /kimchi:bead-protocol for execution.
+```
+
+**If `gastown`:**
+```
+🏘️ These are GasTown-compatible beads.
+The manifest is tagged with orchestration: gastown.
+
+To execute these beads, use the GasTown mayor process:
+  1. The mayor reads .beads/manifest.yaml to understand the dependency graph
+  2. The mayor assigns beads to worker agents based on availability and dependencies
+  3. Workers execute beads and report completion back to the mayor
+  4. The mayor tracks progress and unblocks dependent beads as predecessors complete
+
+Do NOT use /kimchi:bead-protocol (that's for ACFS). Let the mayor handle coordination.
+Run /kimchi:validate first to ensure beads are standalone-executable.
+```
 
 ## Key Principles
 

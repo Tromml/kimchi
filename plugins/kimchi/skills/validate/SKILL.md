@@ -108,15 +108,26 @@ Write `.kimchi/VALIDATION-REPORT.md`:
 [N] of [N] beads validated and ready.
 ```
 
-### 5. Offer Push
+### 5. Post-Validation Guidance
 
-If all beads pass, ask: "Push beads to beads-sync branch? [y/n]"
+Read `.beads/manifest.yaml` and check the `orchestration` field.
 
+**If `acfs` or missing:** Offer to push beads to beads-sync branch:
+```
+Push beads to beads-sync branch? [y/n]
+```
 If yes:
 ```bash
 git add .beads/
 git commit -m "kimchi: validated beads for [feature name]"
 git push origin HEAD:beads-sync
+```
+
+**If `gastown`:**
+```
+🏘️ These are GasTown-compatible beads. Do NOT push to beads-sync.
+The .beads/ directory is ready for the mayor to pick up.
+Use the GasTown mayor process to begin execution.
 ```
 
 Report: "[N] beads validated. Saved report to .kimchi/VALIDATION-REPORT.md"

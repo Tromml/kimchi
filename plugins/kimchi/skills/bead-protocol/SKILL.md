@@ -1,21 +1,24 @@
 ---
 name: kimchi:bead-protocol
-description: Use when executing a bead within ACFS infrastructure — starting, working on, or completing a bead task. Enforces proper ACFS integration.
+description: Use when executing a bead task. Detects orchestration mode (ACFS or GasTown) from .beads/manifest.yaml and enforces the appropriate execution discipline.
 ---
 
 # Bead Protocol
 
 ## Overview
 
-Beads are self-contained task specifications. Executing them requires discipline: read fully, check reservations, follow context, communicate status.
+Beads are self-contained task specifications. Executing them requires discipline: read fully, follow context, communicate status.
 
 **Core principle:** A bead contains everything you need. Read it completely before writing any code.
 
-## When This Applies
+## Orchestration Detection
 
-Whenever executing a bead within ACFS infrastructure.
+**Before anything else**, read `.beads/manifest.yaml` and check the `orchestration` field:
 
-## The Iron Law
+- If `orchestration: gastown` → Follow the **GasTown Protocol** section below
+- If `orchestration: acfs` or field is missing → Follow the **ACFS Protocol** section below
+
+## The Iron Law (applies to ALL modes)
 
 ```
 READ THE FULL BEAD BEFORE WRITING ANY CODE
@@ -23,9 +26,55 @@ READ THE FULL BEAD BEFORE WRITING ANY CODE
 
 No skimming. No "I'll check the rest later." Read every field.
 
-## Starting a Bead
+---
 
-### 1. Read the Full Bead
+## GasTown Protocol
+
+> 🏘️ **These are GasTown-managed beads.** Coordination is handled by the mayor, not by individual agents.
+
+**If you are an agent and this manifest says `orchestration: gastown`, do NOT use the ACFS workflow below.** Instead:
+
+1. **Read the full bead** — same Iron Law applies
+2. **Load context** — find every landmark, understand patterns before implementing
+3. **Follow TDD** — use `kimchi:tdd` skill, write tests from the bead's `tests.cases` first
+4. **Commit frequently** with bead ID prefix: `{bead_id}: {description}`
+5. **Report completion to the mayor** — the mayor tracks status, assigns work, and unblocks dependents
+
+**What the mayor handles (NOT your responsibility in GasTown):**
+- File reservations and conflict prevention
+- Bead assignment and status tracking
+- Dependency resolution and unblocking
+- Inter-agent communication
+
+**What you still own:**
+- Reading the full bead before coding
+- Loading all context landmarks
+- TDD execution
+- Running `kimchi:verification-before-completion` before reporting done
+- Clean commits with bead ID prefix
+
+### GasTown Verification Checklist
+
+- [ ] Bead fully read before starting
+- [ ] Context landmarks found and understood
+- [ ] Tests written first (TDD)
+- [ ] All acceptance criteria verified
+- [ ] Commits include bead ID
+- [ ] Completion reported to mayor
+
+### If Blocked (GasTown)
+
+Report the blocker to the mayor. The mayor will reassign work or unblock you. Do NOT try to coordinate directly with other agents — that's the mayor's job.
+
+---
+
+## ACFS Protocol
+
+> This section applies when `orchestration: acfs` or no orchestration field is set.
+
+### Starting a Bead
+
+#### 1. Read the Full Bead
 
 Before any code:
 ```bash
@@ -39,7 +88,7 @@ Understand ALL of:
 - Test cases (what to test)
 - Dependencies (what must exist first)
 
-### 2. Check File Reservations
+#### 2. Check File Reservations
 
 Before editing any file:
 ```bash
@@ -52,7 +101,7 @@ If reserved:
 - Send Agent Mail to reservation holder
 - Work on non-reserved files first
 
-### 3. Claim the Bead
+#### 3. Claim the Bead
 
 Before starting work, claim the bead in the manifest to prevent duplicate execution:
 
@@ -66,14 +115,14 @@ git push origin HEAD:beads-sync
 
 If the manifest already shows `in_progress` for your bead, STOP — another agent has it.
 
-### 4. Reserve Your Files
+#### 4. Reserve Your Files
 
 ```bash
 # Reserve files you'll be editing
 acfs reserve --add {file_path} --ttl 3600
 ```
 
-### 5. Load Context
+#### 5. Load Context
 
 For each context reference in the bead:
 1. Open the file
@@ -83,19 +132,19 @@ For each context reference in the bead:
 
 **Do not skip any context entry.** Each one is there for a reason.
 
-### 6. Update Bead Status
+#### 6. Update Bead Status
 
 ```bash
 acfs bead status {bead_id} --set in_progress
 ```
 
-## During Execution
+### During Execution (ACFS)
 
-### Follow TDD
+#### Follow TDD
 
 Use the `kimchi:tdd` skill. Write tests from the bead's `tests.cases` field first.
 
-### Commit Frequently
+#### Commit Frequently
 
 Each logical unit of work gets a commit:
 
@@ -109,7 +158,7 @@ Commit message format:
 - Describe what changed
 - Keep under 72 characters
 
-### Handle Blockers
+#### Handle Blockers
 
 If blocked on a dependency:
 
@@ -128,9 +177,9 @@ If blocked on a dependency:
 
 3. Work on non-blocked tasks while waiting
 
-## Completing a Bead
+### Completing a Bead (ACFS)
 
-### 1. Run Verification Skill
+#### 1. Run Verification Skill
 
 Complete the `kimchi:verification-before-completion` skill checklist:
 - All tests pass (entire suite)
@@ -138,25 +187,25 @@ Complete the `kimchi:verification-before-completion` skill checklist:
 - No regressions
 - Diff reviewed
 
-### 2. Release File Reservations
+#### 2. Release File Reservations
 
 ```bash
 acfs reserve --release {file_path}
 ```
 
-### 3. Update Bead Status
+#### 3. Update Bead Status
 
 ```bash
 acfs bead status {bead_id} --set complete
 ```
 
-### 4. Push to beads-sync
+#### 4. Push to beads-sync
 
 ```bash
 git push origin HEAD:beads-sync
 ```
 
-### 5. Send Completion Mail (if others are waiting)
+#### 5. Send Completion Mail (if others are waiting)
 
 ```bash
 acfs mail send \
@@ -165,29 +214,7 @@ acfs mail send \
   --body "Deliverables available: {list}"
 ```
 
-## Common Rationalizations
-
-| Excuse | Reality |
-|--------|---------|
-| "I'll read the rest of the bead later" | You'll miss context. Read it all now. |
-| "Reservations slow me down" | Merge conflicts slow you down more. |
-| "I know what this bead needs" | The bead knows what it needs. Read it. |
-| "I'll update status when I'm done" | Status updates help other agents plan. Do it now. |
-| "Agent Mail is overhead" | Silent blocking wastes everyone's time. |
-| "Skip context, I know the codebase" | Context entries reference specific patterns. Read them. |
-
-## Red Flags — STOP
-
-- Writing code before reading the full bead
-- Editing files without checking reservations
-- Skipping context entries
-- Not committing with bead ID prefix
-- Being blocked and not communicating
-- Marking complete without running verification skill
-
-**ALL of these mean: STOP. Go back to step 1.**
-
-## Verification
+### ACFS Verification Checklist
 
 - [ ] Bead fully read before starting
 - [ ] File reservations checked and acquired
@@ -198,15 +225,32 @@ acfs mail send \
 - [ ] Status updated in ACFS
 - [ ] Pushed to beads-sync
 
+---
+
+## Common Rationalizations (All Modes)
+
+| Excuse | Reality |
+|--------|---------|
+| "I'll read the rest of the bead later" | You'll miss context. Read it all now. |
+| "I know what this bead needs" | The bead knows what it needs. Read it. |
+| "Skip context, I know the codebase" | Context entries reference specific patterns. Read them. |
+| "Reservations slow me down" | Merge conflicts slow you down more. (ACFS) |
+| "Agent Mail is overhead" | Silent blocking wastes everyone's time. (ACFS) |
+| "I'll just coordinate directly" | Let the mayor handle it. (GasTown) |
+
+## Red Flags — STOP
+
+- Writing code before reading the full bead
+- Skipping context entries
+- Not committing with bead ID prefix
+- Marking complete without running verification skill
+- (ACFS) Editing files without checking reservations
+- (ACFS) Being blocked and not communicating via Agent Mail
+- (GasTown) Trying to coordinate directly with other agents instead of going through the mayor
+
+**ALL of these mean: STOP. Go back to step 1.**
+
 ## Anti-Patterns
-
-### FORBIDDEN: Editing without reservation
-
-Always check reservations first. Conflicts waste everyone's time.
-
-### FORBIDDEN: Silent blocking
-
-If you're blocked, communicate immediately. Don't wait and hope.
 
 ### FORBIDDEN: Skipping context
 
@@ -215,3 +259,15 @@ Read the full bead and find all landmarks before writing code. Every context ent
 ### FORBIDDEN: Orphaned beads
 
 Always update status. A bead stuck in "in_progress" blocks downstream work.
+
+### FORBIDDEN (ACFS): Editing without reservation
+
+Always check reservations first. Conflicts waste everyone's time.
+
+### FORBIDDEN (ACFS): Silent blocking
+
+If you're blocked, communicate immediately via Agent Mail. Don't wait and hope.
+
+### FORBIDDEN (GasTown): Rogue coordination
+
+Don't message other agents directly. The mayor handles all inter-agent coordination.

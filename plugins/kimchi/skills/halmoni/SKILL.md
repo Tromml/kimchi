@@ -87,7 +87,7 @@ Check the proposal:
 **Protected components (CANNOT modify):**
 - Bead schema required fields (bead_id, title, description, depends_on, context, deliverables, tests, acceptance_criteria)
 - Command names
-- ACFS integration protocol
+- Orchestration integration protocols (ACFS and GasTown)
 
 If proposal touches protected components, reject it and explain why.
 

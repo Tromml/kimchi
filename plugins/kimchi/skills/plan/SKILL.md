@@ -10,6 +10,25 @@ argument-hint: "[feature idea] [--depth minimal|standard|comprehensive] [--skip-
 Planning pipeline orchestrator. Takes a vague idea and produces a draft plan ready for cross-model analysis. With --full-auto, also runs beads + validate.
 </command_purpose>
 
+## Pre-flight Check
+
+**Before doing anything else**, check if a `.kimchi/` directory already exists:
+
+1. Look for `.kimchi/` in the working directory
+2. If it exists and contains any planning artifacts (CONTEXT.md, REQUIREMENTS.md, PLAN*.md, etc.):
+   - **Warn the user:**
+     ```
+     ⚠️  Existing kimchi plan detected in .kimchi/
+     ```
+   - **Summarize the existing plan** using a haiku agent (model: haiku) to read the highest-stage artifact found and produce a 2-3 sentence summary of what was being planned
+   - **Show the summary** and list which artifacts exist
+   - **Suggest reset:**
+     ```
+     Run /kimchi:reset to clear the previous plan before starting fresh.
+     Or continue if you intend to build on this existing work.
+     ```
+   - **Ask the user** whether to proceed or reset. Do NOT continue the pipeline until the user confirms.
+
 ## Input
 
 Feature idea from `$ARGUMENTS`.

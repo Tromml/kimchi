@@ -1,5 +1,6 @@
 import path from "path"
-import { copyDir, ensureDir, writeText } from "../utils/files"
+import { copyDir, ensureDir, readText, writeText } from "../utils/files"
+import { parseFrontmatter, formatFrontmatter } from "../utils/frontmatter"
 import type { CodexBundle } from "../types/codex"
 import type { ClaudeMcpServer } from "../types/claude"
 
@@ -17,7 +18,20 @@ export async function writeCodexBundle(outputRoot: string, bundle: CodexBundle):
   if (bundle.skillDirs.length > 0) {
     const skillsRoot = path.join(codexRoot, "skills")
     for (const skill of bundle.skillDirs) {
-      await copyDir(skill.sourceDir, path.join(skillsRoot, skill.name))
+      const targetDir = path.join(skillsRoot, skill.name)
+      await copyDir(skill.sourceDir, targetDir)
+      // Rewrite SKILL.md frontmatter through the formatter to ensure valid YAML
+      // (source files may have unquoted colons or other special chars)
+      const skillMdPath = path.join(targetDir, "SKILL.md")
+      try {
+        const raw = await readText(skillMdPath)
+        const { data, body } = parseFrontmatter(raw)
+        if (Object.keys(data).length > 0) {
+          await writeText(skillMdPath, formatFrontmatter(data, body))
+        }
+      } catch {
+        // SKILL.md may not exist in every skill dir — that's fine
+      }
     }
   }
 

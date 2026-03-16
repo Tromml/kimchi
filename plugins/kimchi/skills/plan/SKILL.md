@@ -1,6 +1,6 @@
 ---
 name: kimchi:plan
-description: This command should be used to run the Kimchi planning pipeline through refinement, transforming a vague idea into a draft plan ready for cross-model analysis. Orchestrates 6 stages: clarify, requirements, research, generate, review, refine. Use --full-auto to also run beads + validate after manual revise/synthesize.
+description: "This command should be used to run the Kimchi planning pipeline through refinement, transforming a vague idea into a draft plan ready for cross-model analysis. Orchestrates 6 stages: clarify, requirements, research, generate, review, refine. Use --full-auto to also run beads + validate after manual revise/synthesize."
 argument-hint: "[feature idea] [--depth minimal|standard|comprehensive] [--skip-research] [--skip-review] [--no-push] [--full-auto]"
 ---
 
